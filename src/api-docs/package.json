@@ -1,0 +1,34 @@
+{
+  "name": "api-docs",
+  "version": "1.0.0",
+  "description": "Beginner guide to setting up swagger-ui for node apis",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mclaure/api-docs"
+  },
+  "keywords": [
+    "node.js",
+    "app",
+    "swagger",
+    "swagger-ui",
+    "swagger-node",
+    "swagger-node-express"
+  ],
+  "author": "shawn gong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mclaure/api-docs/issues"
+  },
+  "homepage": "https://github.com/mclaure/api-docs/README.md",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.16.4",
+    "minimist": "^1.2.0",
+    "swagger-node-express": "^2.1.3"
+  }
+}

@@ -1,0 +1,180 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "API Services",
+      "description": "KU2 API services"
+    },
+    "basePath": "/",
+    "tags" : [
+      {"name": "KUDOS", 
+      "description": "List of available methods"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/kudos/add": {
+         "post": {
+            "tags": ["KUDOS"],
+            "description": "Add a new Kudos",
+            "operationId": "for the URL",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+                {
+                  "name": "kudos",
+                  "in": "body",
+                  "description": "Informacion del nuevo Kudos",
+                  "required": true,
+                "schema": {
+                  "$ref": "#/definitions/addKudos"
+                  }
+              }                                                             
+            ],
+            "responses": {
+              "200": {
+                "description": "Kudos Response",
+                "schema": {
+                   "$ref": "#/definitions/createKudos"
+                }
+              }
+            }
+          }
+      },
+      "/api/kudos/del/{id}": {
+          "delete":{
+            "tags":["KUDOS"],
+            "description":"Deletes a kudos",
+            "operationId":"delete",
+            "produces": [
+              "application/json"
+            ],
+            "parameters":[
+                {
+                  "name": "id",
+                  "in": "path",
+                  "description": "kudos's ID to delete",
+                  "required": true,
+                  "type": "integer"
+                }
+              ],
+            "responses": {
+              "200": {
+                "description": "delete response",
+                "schema":{
+                  "$ref":"#/definitions/deleteKudos"
+                }
+              }
+            }
+          } 
+        },
+        "/api/kudos/list": {
+        "get":{
+            "tags": [ "KUDOS"],
+            "description": "Returns a list of kudos",
+            "operationId": "list",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [ ],
+          "responses": {
+              "200": {
+                "description": "response",
+                "schema": {
+                  "$ref": "#/definitions/listKudos"
+                }
+              }
+            }
+          }    
+        }      
+    },
+    "definitions": {
+        "addKudos": {
+            "properties": {
+              "id": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },              
+              "idRemitente": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },
+              "idDestinatario": {
+                "required":true,
+                "type":"integer",
+                "format": "2",
+                "example": 2
+              },
+              "fecha": {
+                "required":true,
+                "type":"date",
+                "example": "2019-09-12"
+              },
+              "lugar": {
+                "required":true,
+                "type":"string",
+                "example": "cochabamba"
+              }, 
+              "tema": {
+                "required":true,
+                "type":"string",
+                "example": "En Hora Buena!"
+              },
+              "texto": {
+                "required":true,
+                "type":"string",
+                "example": "Muchas Felicidades!"
+              }                                                               
+            }
+        },        
+    "listKudos": {
+            "properties": {
+              "idRemitente": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },
+              "idDestinatario": {
+                "required":true,
+                "type":"integer",
+                "format": "2",
+                "example": 2
+              },
+              "tema": {
+                "required":true,
+                "type":"string",
+                "example": "En Hora Buena!"
+              }                                                             
+            }
+        },    
+    "createKudos": {
+            "properties": {
+                "created": {
+                  "required": true,
+                  "type" : "boolean",
+                  "example" : "true"
+                }
+            }
+        },        
+      "deleteKudos": {
+          "properties": {
+              "deleted": {
+                "required": true,
+                "type" : "boolean",
+                "example" : "true"
+              }
+          }
+      }
+    }
+  }

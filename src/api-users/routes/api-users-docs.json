@@ -1,0 +1,277 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "API Services",
+      "description": "KU2V2 API services"
+    },
+    "basePath": "/",
+    "tags" : [
+      {"name": "USERS", 
+      "description": "List of available methods"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/users/add": {
+         "post": {
+            "tags": ["USERS"],
+            "description": "Add a new User",
+            "operationId": "for the URL",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+                {
+                  "name": "User",
+                  "in": "body",
+                  "description": "Informacion del nuevo Usuario",
+                  "required": true,
+                "schema": {
+                  "$ref": "#/definitions/addUser"
+                  }
+              }                                                             
+            ],
+            "responses": {
+              "200": {
+                "description": "Users Response",
+                "schema": {
+                   "$ref": "#/definitions/createUser"
+                }
+              }
+            }
+          }
+      },
+      "/api/users/del/{id}": {
+          "delete":{
+            "tags":["USERS"],
+            "description":"Deletes a User",
+            "operationId":"delete",
+            "produces": [
+              "application/json"
+            ],
+            "parameters":[
+                {
+                  "name": "id",
+                  "in": "path",
+                  "description": "User's ID to delete",
+                  "required": true,
+                  "type": "integer"
+                }
+              ],
+            "responses": {
+              "200": {
+                "description": "delete response",
+                "schema":{
+                  "$ref":"#/definitions/deleteUser"
+                }
+              }
+            }
+          } 
+        },
+        "/api/users/detail": {
+            "get":{
+                "tags": [ "USERS"],
+                "description": "Returns user information",
+                "operationId": "list",
+                "produces": [
+                  "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "User's ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                 ],
+              "responses": {
+                  "200": {
+                    "description": "response",
+                    "schema": {
+                      "$ref": "#/definitions/userInfo"
+                    }
+                  }
+                }
+              }    
+            },  
+            "/api/users/find": {
+                "get":{
+                    "tags": [ "USERS"],
+                    "description": "Returns user information",
+                    "operationId": "list",
+                    "produces": [
+                      "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "userName",
+                            "in": "query",
+                            "description": "User's nickname",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                            "name": "fullName",
+                            "in": "query",
+                            "description": "User's name",
+                            "required": false,
+                            "type": "string"
+                        },
+                        {
+                          "name": "pageSize",
+                          "in": "query",
+                          "description": "Page Size",
+                          "required": false,
+                          "type": "int"
+                        },
+                        {
+                          "name": "startPage",
+                          "in": "query",
+                          "description": "Start Page",
+                          "required": false,
+                          "type": "int"
+                        }                                              
+                     ],
+                  "responses": {
+                      "200": {
+                        "description": "response",
+                        "schema": {
+                          "$ref": "#/definitions/userInfo"
+                        }
+                      }
+                    }
+                  }    
+                },                        
+        "/api/users/list": {
+        "get":{
+            "tags": [ "USERS"],
+            "description": "Returns a list of Users",
+            "operationId": "list",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+                          {
+                            "name": "pageSize",
+                            "in": "query",
+                            "description": "Page Size",
+                            "required": false,
+                            "type": "int"
+                        },
+                        {
+                            "name": "startPage",
+                            "in": "query",
+                            "description": "Start Page",
+                            "required": false,
+                            "type": "int"
+                        } 
+             ],
+          "responses": {
+              "200": {
+                "description": "response",
+                "schema": {
+                  "$ref": "#/definitions/listUsers"
+                }
+              }
+            }
+          }    
+        }      
+    },
+    "definitions": {
+        "addUser": {
+            "properties": {
+              "id": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },              
+              "username": {
+                "required":true,
+                "type": "string",
+                "example": "mclaure"
+              },
+              "fullname": {
+                "required":true,
+                "type":"string",
+                "example": "Marcelo Claure"
+              }                                                              
+            }
+        }, 
+        "userInfo": {
+            "properties": {
+              "id": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },              
+              "userName": {
+                "required":true,
+                "type": "string",
+                "example": "mclaure"
+              },
+              "fullName": {
+                "required":true,
+                "type":"string",
+                "example": "Marcelo Claure"
+              },
+              "kudosQTY": {
+                "required":true,
+                "type":"int",
+                "example": 10
+              }                                                                              
+            }
+        },                 
+    "listUsers": {
+            "properties": {
+              "id": {
+                "required":true,
+                "type": "int",
+                "example": 1
+              },
+              "userName": {
+                "required":true,
+                "type":"string",
+                "example": "mclaure"
+              },
+              "fullName": {
+                "required":true,
+                "type":"string",
+                "example": "Marcelo Claure"
+              },              
+              "kudosQTY": {
+                "required":true,
+                "type":"int",
+                "example": 10
+              }                                                             
+            }
+        },    
+    "createUser": {
+            "properties": {
+                "userCreated": {
+                  "required": true,
+                  "type" : "boolean",
+                  "example" : "true"
+                }
+            }
+        },        
+      "deleteUser": {
+          "properties": {
+              "userDeleted": {
+                "required": true,
+                "type" : "boolean",
+                "example" : "true"
+              }
+          }
+      }
+    }
+  }
