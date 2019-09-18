@@ -1,12 +1,12 @@
 'use strict';
 
 const amqp = require('amqplib/callback_api');
-var kudos = require('./MongoDBController');
-var users = require('./MySQLController');
+var users = require('./UsersController');
+var kudos = require('./KudosController');
 
 const rmqSettings = { 
                         url: 'amqp://admin:Password123@HOME',
-                        exchange: "sync-data",
+                        exchange: "ku2-sync-data",
                         kudos: "kudos",
                         users: "users"                        
                     };

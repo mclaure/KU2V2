@@ -129,7 +129,7 @@ exports.del_user = (req, res, next) => {
     const idUser = parseInt(req.params.id, 10);
     
      //create message update
-    var message = JSON.stringify({ operation: "delete", idUser: idUser });
+    var message = JSON.stringify({ operation: "delete", idDestinatario: idUser });
 
     //find User
     User.findOne({ id: idUser })
@@ -160,4 +160,38 @@ exports.del_user = (req, res, next) => {
             log.info('[/api/users/del] there was an error searching the user: ', err);     
             console.log(err);
         });
+};
+
+exports.user_update = (req, res, next) => {
+    const idUser = parseInt(req.params.id, 10) || 0;
+    const total = parseInt(req.params.total, 10) || 0;    
+
+    if(idUser === 0) return res.status(300).json( { userNotFound: true });
+
+    User.findOne({ id: idUser })
+    .exec()
+    .then(users => {
+        if(users)
+        {
+            User.updateOne({ id: idUser },{ $set: {kudosQTY: total}})
+            .exec()
+            .then(users => {
+                log.info('[/api/users/:id/update/kudosQTY/:total] user ', idUser, ' information updated'); 
+                return res.status(200).json( { userUpdated: true });
+            })
+            .catch(err => {
+                log.info('[/api/users/:id/update/kudosQTY/:total] there was an error updating the user: ', err);     
+                console.log(err);
+            });      
+        }
+        else 
+        {
+            log.info('[/api/users/:id/update/kudosQTY/:total] user ', idUser, ' was not found');
+            res.status(300).json( { userNotFound: true });
+        } 
+    })
+    .catch(err => {
+        log.info('[/api/users/:id/update/kudosQTY/:total] there was an error updating the user: ', err);     
+        console.log(err);
+    });              
 };

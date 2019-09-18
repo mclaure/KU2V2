@@ -19,7 +19,7 @@ exports.add_kudos = (req, res, next) => {
     var lugar = req.body.lugar || '';
     var tema = req.body.tema || '';     
     var texto = req.body.texto  || '';              
-    var newKey = 'kudos:' + id;
+    var newKey = 'kudos:' + id + ':' + idDestinatario;
     
     //Check if the desired id existi or not
     if (redisdb.exists(newKey,  function(err, reply) {
@@ -69,55 +69,91 @@ exports.add_kudos = (req, res, next) => {
     }));
 };
 
+exports.del_all_kudos = (req, res, next) => {               
+    const idUser = parseInt(req.params.userId, 10) || 0;  
+    var patternKey = 'kudos:*:' + idUser;        
+    
+    redisdb.scan('0', 'MATCH', patternKey, 'COUNT', '1000', function(err, kudos){
+        if(err) throw err;
+
+        var kudosKey = kudos[1]; //always the second element
+
+        if(kudosKey.length > 0)
+        {
+            for(var j = 0; j < kudosKey.length; j++)
+            {
+                redisdb.del(kudosKey[j]);             
+            }
+
+            log.info('[/api/kudos/del/all/:userIdl] all kudos from ', idUser, ' were deleted'); 
+            res.status(200).json( { kudosDeleted: true });
+        }
+        else
+        {
+            log.info('[/api/kudos/del/all/:userIdl] all kudos from ', idUser, ' were not found');  
+            res.status(300).json( { kudosNotFound: true });          
+        }
+    });
+};
+
 exports.del_kudos = (req, res, next) => {               
     const idKudos = parseInt(req.params.id, 10) || 0;          
-    var delKey = 'kudos:' + idKudos;
-    
-    if (redisdb.exists(delKey,  function(err, reply) {
-        if(err) log.info('[/api/kudos/del] error: ', err);   
-        
-        if (reply == 1) {
+    var patternKey = 'kudos:' + idKudos + ':*';
 
-            redisdb.hget(delKey, 'idDestinatario', function(err, reply) {
-                if(err) log.info('[/api/kudos/del] error: ', err);  
+    redisdb.scan('0', 'MATCH', patternKey, 'COUNT', '1000', function(err, kudos){
+        if(err) throw err;
 
-                var secKey = 'idDestinatario:' + reply + ':totalKudos';
+         var kudosKey = kudos[1]; //always the second element
+
+         if(kudosKey.length > 0)
+         {          
+            if (redisdb.exists(kudosKey[0],  function(err, reply) {
+                if(err) log.info('[/api/kudos/del] error: ', err);   
                 
-                if (redisdb.exists(secKey, function(err, check) {
+                if (reply == 1) 
+                {
+                    redisdb.del(kudosKey[0]); 
+                    log.info('[/api/kudos/del] kudos ', kudosKey, ' was deleted');   
 
-                    if(check == 1)
-                    {
-                        redisdb.decr(secKey);
-                        log.info('[/api/kudos/del] key ', secKey, ' was decrement by 1'); 
+                    var idDestinatario = kudosKey[0].split(':')[2];
+                    var secKey = 'idDestinatario:' + idDestinatario + ':totalKudos';
 
-                        redisdb.hget(delKey, "idDestinatario", function(err, data) { 
-                            var idDestinatario = parseInt(data);
-                            
-                            redisdb.del(delKey); 
-                            log.info('[/api/kudos/del] key ', delKey, ' was deleted');   
-                            
+                    if (redisdb.exists(secKey,  function(err, reply) {
+                        if(err) log.info('[/api/kudos/del] error: ', err);   
+                        
+                        if (reply == 1) 
+                        {
+                            redisdb.decr(secKey);
+                            log.info('[/api/kudos/del] key ', secKey, ' was decrement by 1'); 
+
                             redisdb.get(secKey, function(err, reply) { 
                                 var total = parseInt(reply);
                                 var message = JSON.stringify({ operation: "del", idDestinatario: idDestinatario, "newTotalKudos": total });
 
                                 rmq.sendMessage(message);
-                                res.status(303).json( { kudosDeleted: true });
-                            });
-                        });
-                    }
-                    else
-                    {
-                        log.info('[/api/kudos/del] idDestinatario ', secKey, ' was Not Found');                          
-                    }
-                }));
-            });
+                                res.status(200).json( { kudosDeleted: true });
+                            });   
+                        }
+                        else
+                        {
+                            log.info('[/api/kudos/del] idDestinatario ', secKey, ' was Not Found');  
+                            res.status(303).json( { kudosDeleted: false });                        
+                        }
+                    }));                               
+                }
+                else
+                {
+                    log.info('[/api/kudos/del] idDestinatario ', kudosKey, ' was Not Found'); 
+                    res.status(303).json( { kudosDeleted: false });                          
+                }
+            })); 
         }
-        else 
+        else
         {
-            log.info('[/api/kudos/del] key ', delKey, ' was not found'); 
-            res.status(303).json( { notFound: true }); 
-        }              
-    }));
+            log.info('[/api/kudos/del] kudos was Not Found');  
+            res.status(303).json( { kudosNotFound: true });     
+        }           
+    });
 };
 
 exports.list_kudos = (req, res, next) => {
