@@ -3,7 +3,7 @@ const amqp = require('amqplib/callback_api');
 
 const rmqSettings = { 
                         url: 'amqp://admin:Password123@HOME',
-                        exchange: "sync-data",
+                        exchange: "ku2-sync-data",
                         key: "kudos"
                     };
 
@@ -18,7 +18,7 @@ var sendMessage = function(message) {
                             //publish the message
                             channel.publish(rmqSettings.exchange, rmqSettings.key, Buffer.from(message));
                             //Log the event
-                            console.log(" [x] Message sent %s: '%s'", rmqSettings.key, message);
+                            console.log(" [x] %s sent the message: '%s'", rmqSettings.key, message);
                     });
 
                     setTimeout(function() { connection.close(); }, 1000);

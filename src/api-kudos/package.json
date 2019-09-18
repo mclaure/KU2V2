@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mclaure/api-crud.git"
+    "url": "git+https://github.com/mclaure/api-kudos.git"
   },
   "keywords": [
     "API",
@@ -19,17 +19,19 @@
   "author": "Marcelo Claure",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mclaure/api-crud/issues"
+    "url": "https://github.com/mclaure/api-kudos/issues"
   },
-  "homepage": "https://github.com/mclaure/api-crud#readme",
+  "homepage": "https://github.com/mclaure/api-kudos#readme",
   "dependencies": {
     "@types/node": "^12.7.3",
+    "amqplib": "^0.5.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "js-beautify": "^1.10.2",
     "mongoose": "^5.6.11",
     "nodemon": "^1.19.1",
-    "amqplib": "^0.5.5",
-    "js-beautify": "^1.10.2"
+    "redis": "^2.8.0",
+    "simple-node-logger": "^18.12.23"
   }
 }

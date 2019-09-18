@@ -132,14 +132,14 @@
                           "in": "query",
                           "description": "Page Size",
                           "required": false,
-                          "type": "int"
+                          "type": "integer"
                         },
                         {
                           "name": "startPage",
                           "in": "query",
                           "description": "Start Page",
                           "required": false,
-                          "type": "int"
+                          "type": "integer"
                         }                                              
                      ],
                   "responses": {
@@ -166,14 +166,14 @@
                             "in": "query",
                             "description": "Page Size",
                             "required": false,
-                            "type": "int"
+                            "type": "integer"
                         },
                         {
                             "name": "startPage",
                             "in": "query",
                             "description": "Start Page",
                             "required": false,
-                            "type": "int"
+                            "type": "integer"
                         } 
              ],
           "responses": {
@@ -192,7 +192,7 @@
             "properties": {
               "id": {
                 "required":true,
-                "type": "int",
+                "type": "integer",
                 "example": 1
               },              
               "username": {
@@ -211,7 +211,7 @@
             "properties": {
               "id": {
                 "required":true,
-                "type": "int",
+                "type": "integer",
                 "example": 1
               },              
               "userName": {
@@ -226,7 +226,7 @@
               },
               "kudosQTY": {
                 "required":true,
-                "type":"int",
+                "type":"integer",
                 "example": 10
               }                                                                              
             }
@@ -235,7 +235,7 @@
             "properties": {
               "id": {
                 "required":true,
-                "type": "int",
+                "type": "integer",
                 "example": 1
               },
               "userName": {
@@ -250,7 +250,7 @@
               },              
               "kudosQTY": {
                 "required":true,
-                "type":"int",
+                "type":"integer",
                 "example": 10
               }                                                             
             }

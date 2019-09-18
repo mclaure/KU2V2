@@ -14,7 +14,7 @@ const opts = {
 const log = require('simple-node-logger').createRollingFileLogger(opts);
 
 exports.list_users = (req, res, next) => {
-    var starPage = parseInt(req.query.starPage) || 0;
+    var startPage = parseInt(req.query.startPage) || 0;
     var pageSize = parseInt(req.query.pageSize) || 0;
     var query = {};
 
@@ -24,7 +24,7 @@ exports.list_users = (req, res, next) => {
         return res.json(response);
     }
 
-    query.skip = pageSize * (starPage - 1);
+    query.skip = pageSize * (startPage - 1);
     query.limit = pageSize;
 
     User.find({},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
@@ -42,7 +42,7 @@ exports.list_users = (req, res, next) => {
 exports.find_users = (req, res, next) => {
     var userName = req.query.userName || '';
     var fullName = req.query.fullName || '';   
-    var starPage = parseInt(req.query.starPage) || 1;
+    var startPage = parseInt(req.query.startPage) || 1;
     var pageSize = parseInt(req.query.pageSize) || 10;
     var query = {};
 
@@ -52,8 +52,9 @@ exports.find_users = (req, res, next) => {
         return res.json(response);
     }     
   
-    query.skip = pageSize * (starPage - 1);
+    query.skip = pageSize * (startPage - 1);
     query.limit = pageSize;
+
     //TODO: include "soundex" capability during searching
     User.find({$or:[{userName:userName},{fullName:fullName}]},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
         .exec()
