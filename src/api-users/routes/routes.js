@@ -3,7 +3,7 @@
 module.exports = function(app) {
 
   var mongodb = require('../controllers/MongoDBController');  
-    
+
   //   *********** USUARIOS ***********
   app.route('/api/users/list')
     .get(mongodb.list_users);  
@@ -27,5 +27,5 @@ module.exports = function(app) {
     .get((req, res) => {
           res.setHeader('Content-Type', 'application/json');
           res.sendFile(__dirname + '/api-users-docs.json');
-    });      
+    });
 };

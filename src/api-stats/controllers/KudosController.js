@@ -1,6 +1,7 @@
 'use strict';
 
-const http = require('http')
+const http = require('http');
+const logger = require('../logger/logger');
 
 module.exports.deleteAllKudos = (userId) => {
   const urlPath = '/api/kudos/del/all/' + userId;
@@ -13,11 +14,11 @@ module.exports.deleteAllKudos = (userId) => {
   };
 
   const req = http.request(options, (res) => {
-    console.log('statusCode: ${res.statusCode}');
+    logger.info('[/api/kudos/del/all/] statusCode: ' + res.statusCode);
   });
 
   req.on('error', (error) => {
-    console.error(error);
+    logger.info('[/api/kudos/del/all/] ' + error);
   })
 
   req.end();

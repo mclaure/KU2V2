@@ -4,22 +4,20 @@ const mongodb = require("../config/MongoDBdatabase");
 const User = require("./schema/Users");
 const rmq = require("./RabbitMQController");
 const mongoose = require("mongoose");
-const opts = {
-    errorEventName:'error',
-    logDirectory:'../../logfiles/api-users',
-    fileNamePattern:'api-users-<DATE>.log',
-    dateFormat:'YYYYMMDDHHmmss',
-    timestampFormat:'YYYY-MM-DD HH:mm:ss.SSS'
-};
-const log = require('simple-node-logger').createRollingFileLogger(opts);
+const logger = require('../logger/logger');
+const elasticSearch = require("../config/ElasticSearch");
+const indexName = 'users';
+const indexType = 'user';
+elasticSearch.Initialize(indexName);
 
 exports.list_users = (req, res, next) => {
     var startPage = parseInt(req.query.startPage) || 0;
     var pageSize = parseInt(req.query.pageSize) || 0;
     var query = {};
+    logger.info('[GET /api/users/list] starting listing users');
 
-    if(pageSize < 0 || pageSize === 0) {
-        log.info('[/api/users/list] Invalid pageSize ', pageSize);        
+    if(pageSize < 0 || pageSize === 0 || startPage < 0) {
+        logger.info('[/api/users/list] Invalid pageSize|startPage ' + pageSize);        
         var response = {"error" : true, "message" : "invalid page number, should start with 1"};
         return res.json(response);
     }
@@ -30,12 +28,12 @@ exports.list_users = (req, res, next) => {
     User.find({},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
         .exec()
         .then(users => {
-            log.info('[/api/users/list] list of users was sent successfully.');  
+            logger.info('[GET /api/users/list] listing users succeed');
             return res.status(200).json({ "users": users });
         })
         .catch(err => {
-            log.info('[/api/users/list] there was an error sending list of users error: ', err);
             console.log(err);
+            logger.info('[GET /api/users/list] error: ' + err);
         });
 };
 
@@ -46,8 +44,10 @@ exports.find_users = (req, res, next) => {
     var pageSize = parseInt(req.query.pageSize) || 10;
     var query = {};
 
-    if(pageSize < 0 || pageSize === 0) {
-        log.info('[/api/users/find] Invalid pageSize ', pageSize);
+    logger.info('[GET /api/users/list] starting finding users');
+
+    if(pageSize < 0 || pageSize === 0 || startPage < 0) {
+        logger.info('[GET /api/users/find] Invalid pageSize|startPage ' + pageSize);
         var response = {"error" : true, "message" : "invalid page number, should start with 1"};
         return res.json(response);
     }     
@@ -59,12 +59,12 @@ exports.find_users = (req, res, next) => {
     User.find({$or:[{userName:userName},{fullName:fullName}]},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
         .exec()
         .then(users => {
-            log.info('[/api/users/find] list of users was sent successfully.');              
+            logger.info('[GET /api/users/find] find user succeed for username: ' + userName + ' fullName: ' + fullName);
             return res.status(200).json({ "users": users });
         })
-        .catch(err => {
-            log.info('[/api/users/find] there was an error sending list of users error: ', err);            
+        .catch(err => {         
             console.log(err);
+            logger.info('[GET /api/users/find] error: ' + err);
         });
 };
 
@@ -72,56 +72,68 @@ exports.user_detail = (req, res, next) => {
     var userId = parseInt(req.query.id) || 0;
 
     if(userId === 0) {
-        log.info('[/api/users/detail] User with id ', req.query.id, ' was not found');
         var response = {"error" : true, "message" : "User Not found"};
+        logger.info('[GET /api/users/detail] user ' + userId + ' not found');
         return res.json(response);
     }     
 
     User.find({ id: userId },{_id:0, id:1, userName:1, fullName:1, kudosQTY:1})
         .exec()
         .then(users => {
-            //TODO We need to add kudos information
-            log.info('[/api/users/detail] user details were sent successfully.');                 
+            //TODO We need to add kudos information 
+            logger.info('[GET /api/users/detail] user detail succeed for userid: '+ userId);             
             return res.status(200).json({ "users": users });
         })
-        .catch(err => {
-            log.info('[/api/users/detail] there was an error sending user details: ', err);              
+        .catch(err => {             
             console.log(err);
+            logger.info('[GET /api/users/detail] error: ' + err);
         });
 };
 
 exports.add_user = (req, res, next) => {               
+    var userId = parseInt(req.body.id);
+    var payload = {
+        userName: req.body.username,
+        fullName: req.body.fullname,      
+    };
     var item = new User({
         _id: mongoose.Types.ObjectId(),
-        id: req.body.id,
-        userName: req.body.username,
-        fullName: req.body.fullname,                
-        kudosQTY: 0          
+        id: userId,
+        userName: payload.userName,
+        fullName: payload.fullName,                
+        kudosQTY: 0       
     });
+
+    logger.info('[GET /api/users/add] starting adding user: ' + req.body.username);
+
+    //ElasticSearch Index creation
+    var newIndex = 'users';
 
     User.findOne({ userName: req.body.username })
         .exec()
         .then(users => {
             if(users) 
             {
-                log.info('[/api/users/add] user ', req.body.username, ' already exists', );  
                 res.status(303).json( { userAlreadyExists: true });
+                logger.info('[GET /api/users/add] user already exists: ' + req.body.username);
             }
             else
             {
                 item.save()
-                .then(result => {
-                    log.info('[/api/users/add] user ', req.body.username, ' was created successfully');  
+                .then(result => {  
                     res.status(200).json( { userCreated: true });
+                    logger.info('[GET /api/users/add] user ' + req.body.username + ' created');
+                    elasticSearch.addDocument(indexName, userId, indexType, payload);
                 })
                 .catch(err => {
                     console.log(err);
+                    logger.info('[GET /api/users/add] error: ' + err);
             });  
             }
         })
-        .catch(err => {
-            log.info('[/api/users/add] there was an error adding user error: ', err);              
+        .catch(err => {            
             console.log(err);
+            logger.info('[GET /api/users/add] error: ' + err);
         }); 
 };
 
@@ -130,6 +142,7 @@ exports.del_user = (req, res, next) => {
     
      //create message update
     var message = JSON.stringify({ operation: "delete", idDestinatario: idUser });
+    logger.info('[GET /api/users/del] starting deleting user: ' + idUser);
 
     //find User
     User.findOne({ id: idUser })
@@ -141,24 +154,25 @@ exports.del_user = (req, res, next) => {
                 User.deleteOne({ id: idUser })
                 .exec()
                 .then(users => {
-                    log.info('[/api/users/del] user ', idUser, ' was deleted successfully');
                     rmq.sendMessage(message);
                     res.status(200).json( { userDeleted: true });
+                    elasticSearch.deleteDocument(indexName, idUser, indexType);
+                    logger.info('[GET /api/users/del] user: ' + idUser + ' was deleted.');
                 })
-                .catch(err => {
-                    log.info('[/api/users/del] there was an error deleting user with: ', err);                     
-                    console.log(err)
+                .catch(err => {                     
+                    console.log(err);
+                    logger.info('[GET /api/users/del] error: ' + err);
                 });
             }
             else 
             {
-                log.info('[/api/users/del] user ', idUser, ' was not found');
                 res.status(300).json( { userNotFound: true });
+                logger.info('[GET /api/users/del] user: ' + idUser + ' was not found');
             } 
         })
-        .catch(err => {
-            log.info('[/api/users/del] there was an error searching the user: ', err);     
+        .catch(err => {     
             console.log(err);
+            logger.info('[GET /api/users/del] error: ' + err);
         });
 };
 
@@ -166,7 +180,10 @@ exports.user_update = (req, res, next) => {
     const idUser = parseInt(req.params.id, 10) || 0;
     const total = parseInt(req.params.total, 10) || 0;    
 
-    if(idUser === 0) return res.status(300).json( { userNotFound: true });
+    if(idUser === 0) {
+        logger.info('[GET /api/users/update] user: ' + idUser + ' not found');
+        return res.status(300).json( { userNotFound: true });
+    }
 
     User.findOne({ id: idUser })
     .exec()
@@ -176,22 +193,22 @@ exports.user_update = (req, res, next) => {
             User.updateOne({ id: idUser },{ $set: {kudosQTY: total}})
             .exec()
             .then(users => {
-                log.info('[/api/users/:id/update/kudosQTY/:total] user ', idUser, ' information updated'); 
+                logger.info('[GET /api/users/update] user: ' +  idUser + ' was successfully updated');
                 return res.status(200).json( { userUpdated: true });
             })
-            .catch(err => {
-                log.info('[/api/users/:id/update/kudosQTY/:total] there was an error updating the user: ', err);     
+            .catch(err => {    
                 console.log(err);
+                logger.info('[GET /api/users/update] error: ' + err);
             });      
         }
         else 
         {
-            log.info('[/api/users/:id/update/kudosQTY/:total] user ', idUser, ' was not found');
+            logger.info('[GET /api/users/update] user: ' + idUser + ' was not found');
             res.status(300).json( { userNotFound: true });
         } 
     })
-    .catch(err => {
-        log.info('[/api/users/:id/update/kudosQTY/:total] there was an error updating the user: ', err);     
+    .catch(err => {    
         console.log(err);
+        logger.info('[GET /api/users/update] error: ' + err);
     });              
 };

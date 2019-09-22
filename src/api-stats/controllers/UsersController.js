@@ -1,6 +1,7 @@
 'use strict';
 
-const http = require('http')
+const http = require('http');
+const logger = require('../logger/logger');
 
 module.exports.updateUserKudos = (userId, total) => {
   const urlPath = '/api/users/' + userId + '/update/kudosQTY/' + total;
@@ -12,11 +13,11 @@ module.exports.updateUserKudos = (userId, total) => {
   };
 
   const req = http.request(options, (res) => {
-    console.log('statusCode: ${res.statusCode}');
+    logger.info('[' + urlPath +'] statusCode: ' + res.statusCode);
   });
 
   req.on('error', (error) => {
-    console.error(error);
+    logger.info('[' + urlPath +'] error: ' + error);
   })
 
   req.end();

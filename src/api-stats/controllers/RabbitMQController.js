@@ -3,6 +3,7 @@
 const amqp = require('amqplib/callback_api');
 var users = require('./UsersController');
 var kudos = require('./KudosController');
+const logger = require('../logger/logger');
 
 const rmqSettings = { 
                         url: 'amqp://admin:Password123@HOME',
@@ -33,7 +34,7 @@ module.exports.startReceivingMessages = () => {
                                     var key = msg.fields.routingKey;
                                     var message = msg.content.toString();
 
-                                    console.log(" [x] %s: '%s'", key, message);
+                                    logger.info(' [x] ' + key + ': ' + message);
                                     
                                     var info = JSON.parse(message);
 
@@ -43,19 +44,19 @@ module.exports.startReceivingMessages = () => {
                                         if(info.operation === 'delete')
                                             kudos.deleteAllKudos(info.idDestinatario);
                                         else
-                                            console.log(' [!] kudos => not supported operation');
+                                            logger.info(' [!] kudos => not supported operation');
                                     }
                                     else if (key == rmqSettings.kudos)
                                     {
                                         //A kudos action happened we need to update users data then
-                                        if(info.operation === 'add' || info.operation === 'delete')
+                                        if(info.operation === 'add' || info.operation === 'del')
                                             users.updateUserKudos(info.idDestinatario, info.newTotalKudos);
                                         else
-                                            console.log(' [!] users => not supported operation');
+                                            logger.info(' [!] users => not supported operation');
                                     }
                                     else 
                                     {
-                                        console.log(" [!] Message key '%s' was not found for any action", key);
+                                        logger.info(' [!] Message ' + key + ' was not found for any action');
                                     }
 
                                 }, {
