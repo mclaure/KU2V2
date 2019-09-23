@@ -24,7 +24,7 @@ API solution that handles NoSQL and SQL requests
 
 4. Go to a web browser and run http://localhost:6060
 
-![swagger-example](https://user-images.githubusercontent.com/24611413/64903770-d3e0c780-d68c-11e9-86be-f4ab473729a8.jpg)
+![swagger](https://user-images.githubusercontent.com/24611413/65401311-4cced600-dd95-11e9-8abb-3783bb322433.jpg)
 
 ---
 ## Available APIs
