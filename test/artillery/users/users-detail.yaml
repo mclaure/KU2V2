@@ -1,0 +1,13 @@
+config:
+  target: "http://localhost:5000"
+  processor: "../helpers/users-payload.js"
+  phases:    
+    - duration: 60
+      arrivalRate: 2
+      rampTo: 5
+scenarios:
+  - name: "Users Detail"
+    flow:
+      - function: "generateRandomUserId"
+      - get:
+          url: "/api/users/detail?id={{userId}}"

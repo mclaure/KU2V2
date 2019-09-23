@@ -1,0 +1,539 @@
+{
+  "aggregate": {
+    "timestamp": "2019-09-23T02:44:30.560Z",
+    "scenariosCreated": 220,
+    "scenariosCompleted": 220,
+    "requestsCompleted": 220,
+    "latency": {
+      "min": 3.9,
+      "max": 16.4,
+      "median": 7.1,
+      "p95": 12.6,
+      "p99": 14.7
+    },
+    "rps": {
+      "count": 220,
+      "mean": 3.6
+    },
+    "scenarioDuration": {
+      "min": 5.6,
+      "max": 72.3,
+      "median": 10.6,
+      "p95": 18.1,
+      "p99": 20.8
+    },
+    "scenarioCounts": {
+      "Users Del": 220
+    },
+    "errors": {},
+    "codes": {
+      "300": 220
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 60,
+        "arrivalRate": 2,
+        "rampTo": 5
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-09-23T02:43:39.214Z",
+      "scenariosCreated": 22,
+      "scenariosCompleted": 22,
+      "requestsCompleted": 22,
+      "latency": {
+        "min": 4.6,
+        "max": 12.5,
+        "median": 7.4,
+        "p95": 12,
+        "p99": 12.5
+      },
+      "rps": {
+        "count": 22,
+        "mean": 2.26
+      },
+      "scenarioDuration": {
+        "min": 6.5,
+        "max": 72.3,
+        "median": 11.1,
+        "p95": 40.4,
+        "p99": 72.3
+      },
+      "scenarioCounts": {
+        "Users Del": 22
+      },
+      "errors": {},
+      "codes": {
+        "300": 22
+      },
+      "matches": 0,
+      "latencies": [
+        9160099,
+        6879891,
+        9717408,
+        12518676,
+        5559115,
+        11675539,
+        11683091,
+        5192485,
+        7282769,
+        8059830,
+        6996941,
+        5207588,
+        8286000,
+        5760366,
+        4806598,
+        5385806,
+        8820654,
+        4598929,
+        9339827,
+        8019806,
+        7518380,
+        6204023
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:43:49.203Z",
+      "scenariosCreated": 31,
+      "scenariosCompleted": 31,
+      "requestsCompleted": 31,
+      "latency": {
+        "min": 3.9,
+        "max": 12.9,
+        "median": 6.6,
+        "p95": 11.5,
+        "p99": 12.9
+      },
+      "rps": {
+        "count": 31,
+        "mean": 3.16
+      },
+      "scenarioDuration": {
+        "min": 6.8,
+        "max": 20,
+        "median": 10.3,
+        "p95": 18.4,
+        "p99": 20
+      },
+      "scenarioCounts": {
+        "Users Del": 31
+      },
+      "errors": {},
+      "codes": {
+        "300": 31
+      },
+      "matches": 0,
+      "latencies": [
+        7224622,
+        7618439,
+        6746983,
+        5424319,
+        6234607,
+        5482466,
+        8694542,
+        8958471,
+        7656951,
+        5965392,
+        5475670,
+        8088149,
+        7097000,
+        4996521,
+        4331979,
+        3944204,
+        11114077,
+        6512883,
+        4677465,
+        6572918,
+        5325393,
+        6415467,
+        12949118,
+        5485865,
+        5624437,
+        6420376,
+        6835714,
+        11476932,
+        8184053,
+        10387990,
+        7904266
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:43:59.230Z",
+      "scenariosCreated": 29,
+      "scenariosCompleted": 29,
+      "requestsCompleted": 29,
+      "latency": {
+        "min": 4.3,
+        "max": 12.6,
+        "median": 6.1,
+        "p95": 11.9,
+        "p99": 12.6
+      },
+      "rps": {
+        "count": 29,
+        "mean": 2.89
+      },
+      "scenarioDuration": {
+        "min": 6.2,
+        "max": 17.9,
+        "median": 8.8,
+        "p95": 17.9,
+        "p99": 17.9
+      },
+      "scenarioCounts": {
+        "Users Del": 29
+      },
+      "errors": {},
+      "codes": {
+        "300": 29
+      },
+      "matches": 0,
+      "latencies": [
+        4566834,
+        6882912,
+        11156366,
+        5772070,
+        12567762,
+        5280838,
+        10639459,
+        5267245,
+        5187576,
+        11360260,
+        4785830,
+        6081686,
+        4549465,
+        4612144,
+        5125276,
+        6076400,
+        5897805,
+        6475502,
+        6058276,
+        5230998,
+        4646881,
+        8135346,
+        8214637,
+        5691646,
+        4331980,
+        8657917,
+        11653640,
+        7703016,
+        11905863
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:44:09.229Z",
+      "scenariosCreated": 40,
+      "scenariosCompleted": 40,
+      "requestsCompleted": 40,
+      "latency": {
+        "min": 4.2,
+        "max": 14.6,
+        "median": 8.2,
+        "p95": 13.3,
+        "p99": 14.6
+      },
+      "rps": {
+        "count": 40,
+        "mean": 4.07
+      },
+      "scenarioDuration": {
+        "min": 5.7,
+        "max": 19.9,
+        "median": 12.4,
+        "p95": 17.9,
+        "p99": 19.9
+      },
+      "scenarioCounts": {
+        "Users Del": 40
+      },
+      "errors": {},
+      "codes": {
+        "300": 40
+      },
+      "matches": 0,
+      "latencies": [
+        5049005,
+        7713589,
+        11197145,
+        7633920,
+        11359127,
+        12854345,
+        4175283,
+        5276307,
+        4593643,
+        12274382,
+        7118900,
+        4206622,
+        8572584,
+        5203435,
+        9019639,
+        11398395,
+        12102960,
+        14598011,
+        9357952,
+        5764519,
+        10896213,
+        11757096,
+        6631821,
+        13821328,
+        5980495,
+        6317297,
+        4339530,
+        6669957,
+        11489770,
+        7829128,
+        12168282,
+        4322162,
+        9489349,
+        9783861,
+        11375363,
+        4749583,
+        6776057,
+        9217868,
+        4514728,
+        11800896
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:44:19.205Z",
+      "scenariosCreated": 44,
+      "scenariosCompleted": 44,
+      "requestsCompleted": 44,
+      "latency": {
+        "min": 4.2,
+        "max": 14.8,
+        "median": 7.5,
+        "p95": 12.7,
+        "p99": 14.8
+      },
+      "rps": {
+        "count": 44,
+        "mean": 4.49
+      },
+      "scenarioDuration": {
+        "min": 5.6,
+        "max": 19.2,
+        "median": 11.8,
+        "p95": 18,
+        "p99": 19.2
+      },
+      "scenarioCounts": {
+        "Users Del": 44
+      },
+      "errors": {},
+      "codes": {
+        "300": 44
+      },
+      "matches": 0,
+      "latencies": [
+        6197604,
+        7653931,
+        4530209,
+        7439843,
+        7305047,
+        4259106,
+        4912320,
+        10602455,
+        11864707,
+        9217114,
+        5429982,
+        4274209,
+        11241321,
+        12232470,
+        11781640,
+        5656531,
+        8078331,
+        4425997,
+        11810335,
+        5229110,
+        8678306,
+        11742748,
+        5865710,
+        6767750,
+        4229278,
+        4999919,
+        12807525,
+        4305926,
+        11069146,
+        8096078,
+        9680028,
+        12005545,
+        5870242,
+        5204567,
+        12597590,
+        11359127,
+        14821916,
+        11218289,
+        7228398,
+        12106358,
+        7165720,
+        8998117,
+        5823799,
+        6781721
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:44:29.208Z",
+      "scenariosCreated": 50,
+      "scenariosCompleted": 50,
+      "requestsCompleted": 50,
+      "latency": {
+        "min": 4.6,
+        "max": 16.4,
+        "median": 7,
+        "p95": 13,
+        "p99": 16.4
+      },
+      "rps": {
+        "count": 50,
+        "mean": 5
+      },
+      "scenarioDuration": {
+        "min": 5.9,
+        "max": 21,
+        "median": 9.1,
+        "p95": 17.9,
+        "p99": 21
+      },
+      "scenarioCounts": {
+        "Users Del": 50
+      },
+      "errors": {},
+      "codes": {
+        "300": 50
+      },
+      "matches": 0,
+      "latencies": [
+        4612899,
+        4727306,
+        5940094,
+        11401794,
+        12444671,
+        4751094,
+        10560545,
+        13016327,
+        6436990,
+        5314444,
+        4579294,
+        4986703,
+        5878926,
+        5041831,
+        5890631,
+        7076233,
+        10406492,
+        6506465,
+        11234148,
+        6633709,
+        5815870,
+        5495681,
+        7958638,
+        8543888,
+        7336764,
+        5837015,
+        6369025,
+        4922892,
+        8488761,
+        7083029,
+        12714262,
+        5207588,
+        6039020,
+        6726972,
+        6467574,
+        10698739,
+        11942489,
+        11341003,
+        6876116,
+        6558193,
+        12376706,
+        8338107,
+        9694376,
+        13601954,
+        12022913,
+        6431704,
+        16369240,
+        9373432,
+        10788225,
+        9827283
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T02:44:30.542Z",
+      "scenariosCreated": 4,
+      "scenariosCompleted": 4,
+      "requestsCompleted": 4,
+      "latency": {
+        "min": 5,
+        "max": 11.3,
+        "median": 5.5,
+        "p95": 11.3,
+        "p99": 11.3
+      },
+      "rps": {
+        "count": 4,
+        "mean": 3.01
+      },
+      "scenarioDuration": {
+        "min": 6.5,
+        "max": 15.9,
+        "median": 7.6,
+        "p95": 15.9,
+        "p99": 15.9
+      },
+      "scenarioCounts": {
+        "Users Del": 4
+      },
+      "errors": {},
+      "codes": {
+        "300": 4
+      },
+      "matches": 0,
+      "latencies": [
+        5134337,
+        4981795,
+        5903846,
+        11322502
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

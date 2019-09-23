@@ -1,0 +1,14 @@
+config:
+  target: "http://localhost:5000"
+  processor: "../helpers/users-payload.js"
+  phases:    
+    - duration: 60
+      arrivalRate: 2
+      rampTo: 5
+scenarios:
+  - name: "Users Add"
+    flow:
+      - function: "generateRandomPayload"
+      - post:
+          url: "/api/users/add"
+          json: "{{payload}}" 

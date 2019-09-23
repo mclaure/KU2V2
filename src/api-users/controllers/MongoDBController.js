@@ -28,7 +28,7 @@ exports.list_users = (req, res, next) => {
     User.find({},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
         .exec()
         .then(users => {
-            logger.info('[GET /api/users/list] listing users succeed');
+            logger.info('[GET /api/users/list] listing users succeed [startPage:' + startPage + ', pageSize:' + pageSize + ']');
             return res.status(200).json({ "users": users });
         })
         .catch(err => {
@@ -44,7 +44,7 @@ exports.find_users = (req, res, next) => {
     var pageSize = parseInt(req.query.pageSize) || 10;
     var query = {};
 
-    logger.info('[GET /api/users/list] starting finding users');
+    logger.info('[GET /api/users/find] starting finding users');
 
     if(pageSize < 0 || pageSize === 0 || startPage < 0) {
         logger.info('[GET /api/users/find] Invalid pageSize|startPage ' + pageSize);
@@ -59,7 +59,7 @@ exports.find_users = (req, res, next) => {
     User.find({$or:[{userName:userName},{fullName:fullName}]},{_id:0, id:1, userName:1, fullName:1, kudosQTY:1}, query)
         .exec()
         .then(users => {
-            logger.info('[GET /api/users/find] find user succeed for username: ' + userName + ' fullName: ' + fullName);
+            logger.info('[GET /api/users/find] operation succeed for [username: ' + userName + ' fullName: ' + fullName + ', startPage:' + startPage + ', pageSize:' + pageSize + ']');
             return res.status(200).json({ "users": users });
         })
         .catch(err => {         
@@ -81,7 +81,7 @@ exports.user_detail = (req, res, next) => {
         .exec()
         .then(users => {
             //TODO We need to add kudos information 
-            logger.info('[GET /api/users/detail] user detail succeed for userid: '+ userId);             
+            logger.info('[GET /api/users/detail] operation succeed for userid: '+ userId);             
             return res.status(200).json({ "users": users });
         })
         .catch(err => {             
