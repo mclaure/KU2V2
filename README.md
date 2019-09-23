@@ -14,15 +14,15 @@ API solution that handles NoSQL and SQL requests
 3. Run the following commnad on each folder to start each API service
  
    default ports
- *  api-docs  : 7070
+ *  api-docs  : 6060
  *  api-stats : 7000
- *  api-kudos : 8000
- *  api-users : 9000
+ *  api-kudos : 6500
+ *  api-users : 5000
 ```
     node server.js
 ```
 
-4. Go to a web browser and run http://localhost:7070
+4. Go to a web browser and run http://localhost:6060
 
 ![swagger-example](https://user-images.githubusercontent.com/24611413/64903770-d3e0c780-d68c-11e9-86be-f4ab473729a8.jpg)
 
