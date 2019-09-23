@@ -1,0 +1,13 @@
+config:
+  target: "http://localhost:6500"
+  processor: "../helpers/kudos-payload.js"
+  phases:    
+    - duration: 60
+      arrivalRate: 2
+      rampTo: 5
+scenarios:
+  - name: "Kudos Del all"
+    flow:
+      - function: "generateRandomUserId"
+      - delete:
+          url: "/api/kudos/del/all/{{userId}}"

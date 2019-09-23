@@ -1,0 +1,534 @@
+{
+  "aggregate": {
+    "timestamp": "2019-09-23T03:03:20.782Z",
+    "scenariosCreated": 215,
+    "scenariosCompleted": 215,
+    "requestsCompleted": 215,
+    "latency": {
+      "min": 3.2,
+      "max": 20.2,
+      "median": 7.1,
+      "p95": 13.1,
+      "p99": 15.4
+    },
+    "rps": {
+      "count": 215,
+      "mean": 3.52
+    },
+    "scenarioDuration": {
+      "min": 5.1,
+      "max": 81,
+      "median": 10.3,
+      "p95": 18,
+      "p99": 24.8
+    },
+    "scenarioCounts": {
+      "Kudos List": 215
+    },
+    "errors": {},
+    "codes": {
+      "200": 215
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 60,
+        "arrivalRate": 2,
+        "rampTo": 5
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-09-23T03:02:29.457Z",
+      "scenariosCreated": 19,
+      "scenariosCompleted": 19,
+      "requestsCompleted": 19,
+      "latency": {
+        "min": 3.2,
+        "max": 16.8,
+        "median": 5.9,
+        "p95": 15.8,
+        "p99": 16.8
+      },
+      "rps": {
+        "count": 19,
+        "mean": 1.95
+      },
+      "scenarioDuration": {
+        "min": 5.1,
+        "max": 81,
+        "median": 10.5,
+        "p95": 56,
+        "p99": 81
+      },
+      "scenarioCounts": {
+        "Kudos List": 19
+      },
+      "errors": {},
+      "codes": {
+        "200": 19
+      },
+      "matches": 0,
+      "latencies": [
+        16766077,
+        14706754,
+        5237417,
+        3681786,
+        3831308,
+        4964048,
+        3223781,
+        4516994,
+        7885010,
+        3190554,
+        8296951,
+        5234018,
+        4948568,
+        6443031,
+        13095241,
+        7929565,
+        5875527,
+        7189885,
+        7881235
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:02:39.463Z",
+      "scenariosCreated": 28,
+      "scenariosCompleted": 28,
+      "requestsCompleted": 28,
+      "latency": {
+        "min": 4.8,
+        "max": 13.2,
+        "median": 7.1,
+        "p95": 12.1,
+        "p99": 13.2
+      },
+      "rps": {
+        "count": 28,
+        "mean": 2.85
+      },
+      "scenarioDuration": {
+        "min": 6.6,
+        "max": 18.4,
+        "median": 10,
+        "p95": 18,
+        "p99": 18.4
+      },
+      "scenarioCounts": {
+        "Kudos List": 28
+      },
+      "errors": {},
+      "codes": {
+        "200": 28
+      },
+      "matches": 0,
+      "latencies": [
+        6483810,
+        5910643,
+        6473238,
+        6025805,
+        11963255,
+        11997992,
+        7714344,
+        4846621,
+        9882788,
+        13170380,
+        6469084,
+        6557060,
+        5352201,
+        4762421,
+        11866594,
+        6629933,
+        6822876,
+        7444374,
+        8808195,
+        7848385,
+        6688081,
+        9399107,
+        6303704,
+        10275471,
+        9362482,
+        11765781,
+        6245934,
+        7611642
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:02:49.470Z",
+      "scenariosCreated": 33,
+      "scenariosCompleted": 33,
+      "requestsCompleted": 33,
+      "latency": {
+        "min": 5.1,
+        "max": 20.2,
+        "median": 8.7,
+        "p95": 13.2,
+        "p99": 20.2
+      },
+      "rps": {
+        "count": 33,
+        "mean": 3.3
+      },
+      "scenarioDuration": {
+        "min": 6.8,
+        "max": 24.4,
+        "median": 12.1,
+        "p95": 18.6,
+        "p99": 24.4
+      },
+      "scenarioCounts": {
+        "Kudos List": 33
+      },
+      "errors": {},
+      "codes": {
+        "200": 33
+      },
+      "matches": 0,
+      "latencies": [
+        5911398,
+        6828162,
+        11372342,
+        5980495,
+        6356188,
+        9456122,
+        9495768,
+        12741826,
+        8664336,
+        11057062,
+        5904224,
+        13279501,
+        12153556,
+        12381992,
+        9812936,
+        11584164,
+        20170342,
+        5631233,
+        5999374,
+        5827198,
+        12103716,
+        5746395,
+        5369947,
+        11494301,
+        7266911,
+        5598761,
+        6154937,
+        6594063,
+        5102621,
+        6650322,
+        9126494,
+        11745769,
+        8746649
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:02:59.461Z",
+      "scenariosCreated": 38,
+      "scenariosCompleted": 38,
+      "requestsCompleted": 38,
+      "latency": {
+        "min": 4,
+        "max": 12.3,
+        "median": 6.4,
+        "p95": 12,
+        "p99": 12.3
+      },
+      "rps": {
+        "count": 38,
+        "mean": 3.95
+      },
+      "scenarioDuration": {
+        "min": 5.5,
+        "max": 17.3,
+        "median": 8.9,
+        "p95": 16.7,
+        "p99": 17.3
+      },
+      "scenarioCounts": {
+        "Kudos List": 38
+      },
+      "errors": {},
+      "codes": {
+        "200": 38
+      },
+      "matches": 0,
+      "latencies": [
+        12340835,
+        5374856,
+        5743752,
+        7604468,
+        5791327,
+        11549805,
+        8307523,
+        5555717,
+        6937661,
+        9141975,
+        10781051,
+        12027821,
+        8238803,
+        4017832,
+        12026311,
+        10747447,
+        7192528,
+        5863823,
+        5578750,
+        11667987,
+        6597462,
+        11630984,
+        5440933,
+        5289523,
+        5113193,
+        6429060,
+        6647302,
+        6433591,
+        11367811,
+        6049970,
+        5332567,
+        6036754,
+        5382408,
+        6011834,
+        9738552,
+        5017665,
+        5129429,
+        5973321
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:03:09.473Z",
+      "scenariosCreated": 43,
+      "scenariosCompleted": 43,
+      "requestsCompleted": 43,
+      "latency": {
+        "min": 4.7,
+        "max": 13.4,
+        "median": 7.3,
+        "p95": 13.1,
+        "p99": 13.4
+      },
+      "rps": {
+        "count": 43,
+        "mean": 4.3
+      },
+      "scenarioDuration": {
+        "min": 6,
+        "max": 19.8,
+        "median": 10.4,
+        "p95": 17.8,
+        "p99": 19.8
+      },
+      "scenarioCounts": {
+        "Kudos List": 43
+      },
+      "errors": {},
+      "codes": {
+        "200": 43
+      },
+      "matches": 0,
+      "latencies": [
+        10522409,
+        9530883,
+        5590077,
+        5268379,
+        6205155,
+        5619529,
+        6146253,
+        5121877,
+        8508773,
+        10402716,
+        6370158,
+        12437874,
+        11765403,
+        13399948,
+        6399609,
+        9994174,
+        11345156,
+        5554585,
+        6849307,
+        5963126,
+        12628552,
+        5661817,
+        10528828,
+        7143820,
+        7259360,
+        5524378,
+        7567843,
+        5507765,
+        5452260,
+        8406826,
+        5355977,
+        5904224,
+        6928976,
+        7519135,
+        12895123,
+        12677637,
+        4653678,
+        12992161,
+        11773710,
+        13277990,
+        11794854,
+        6994676,
+        12308364
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:03:19.466Z",
+      "scenariosCreated": 50,
+      "scenariosCompleted": 50,
+      "requestsCompleted": 50,
+      "latency": {
+        "min": 4,
+        "max": 14.2,
+        "median": 7.8,
+        "p95": 12.8,
+        "p99": 14.2
+      },
+      "rps": {
+        "count": 50,
+        "mean": 5.01
+      },
+      "scenarioDuration": {
+        "min": 5.5,
+        "max": 18.6,
+        "median": 11.1,
+        "p95": 17.8,
+        "p99": 18.6
+      },
+      "scenarioCounts": {
+        "Kudos List": 50
+      },
+      "errors": {},
+      "codes": {
+        "200": 50
+      },
+      "matches": 0,
+      "latencies": [
+        4820568,
+        5403930,
+        10495978,
+        5903846,
+        6604258,
+        11977226,
+        6503066,
+        7095489,
+        5300473,
+        5704862,
+        14206460,
+        12373685,
+        9655106,
+        6067716,
+        4043886,
+        10908673,
+        10259990,
+        11530548,
+        11131069,
+        11478820,
+        11462207,
+        5827575,
+        11023457,
+        5326526,
+        8063605,
+        13132244,
+        6104341,
+        5627458,
+        6027315,
+        12030087,
+        12659891,
+        6914251,
+        10137277,
+        6582358,
+        6822876,
+        6674488,
+        7991865,
+        5604803,
+        6017120,
+        11000426,
+        12707467,
+        7596538,
+        12612316,
+        7033188,
+        11779752,
+        9672098,
+        7027148,
+        8031512,
+        12809791,
+        6234229
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-09-23T03:03:20.764Z",
+      "scenariosCreated": 4,
+      "scenariosCompleted": 4,
+      "requestsCompleted": 4,
+      "latency": {
+        "min": 6.5,
+        "max": 14.2,
+        "median": 8.4,
+        "p95": 14.2,
+        "p99": 14.2
+      },
+      "rps": {
+        "count": 4,
+        "mean": 3.08
+      },
+      "scenarioDuration": {
+        "min": 7.9,
+        "max": 18.6,
+        "median": 10.8,
+        "p95": 18.6,
+        "p99": 18.6
+      },
+      "scenarioCounts": {
+        "Kudos List": 4
+      },
+      "errors": {},
+      "codes": {
+        "200": 4
+      },
+      "matches": 0,
+      "latencies": [
+        9773667,
+        7058864,
+        14246106,
+        6469839
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

@@ -94,7 +94,7 @@ exports.del_all_kudos = (req, res, next) => {
         }
         else
         {
-            logger.info('[/api/kudos/del/all/:userIdl] all kudos from ' + idUser + ' were not found');  
+            logger.info('[/api/kudos/del/all/:userId] No kudos were found for User: ' + idUser);  
             res.status(300).json( { kudosNotFound: true });          
         }
     });
@@ -149,14 +149,14 @@ exports.del_kudos = (req, res, next) => {
                 }
                 else
                 {
-                    logger.info('[/api/kudos/del] idDestinatario ' + kudosKey + ' was Not Found'); 
+                    logger.info('[/api/kudos/del] idDestinatario ' + idKudos + ' was Not Found'); 
                     res.status(303).json( { kudosDeleted: false });                          
                 }
             })); 
         }
         else
         {
-            logger.info('[/api/kudos/del] kudos was Not Found');  
+            logger.info('[/api/kudos/del] kudos ' + idKudos + ' was not found');  
             res.status(303).json( { kudosNotFound: true });     
         }           
     });
@@ -201,7 +201,7 @@ exports.list_kudos = (req, res, next) => {
 
         Promise.all(allPromises)
                .then(kudosList => {
-                    logger.info('[/api/kudos/list] returning list of kudos size:' + kudosList.length);
+                    logger.info('[/api/kudos/list] returning list of kudos [StartPage:' + startPage + ', pageSize:' + pageSize + ']');
                     return res.status(200).json({ "kudos": kudosList });      
                })
                .catch(err => {
